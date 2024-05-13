@@ -2,15 +2,15 @@
 
 ## The basics
 
-`git add [file_name]` This command is used to add a particular file to the staging directory, from the working directory. The working directory is the folder you create the git file in, and the staging directory is the intermediate area before you commit any changes to the local repository.
-
-`git commit` This command is used to commit any changes made to the branch you are on currently, to the local repository.
-
-`git checkout [branch_name]` This command is used to move to the `[branch_name]`. It can be used with the `-b` modifier to create a new branch and move to it in one command, like so: `git checkout -b [branch_name]`. You are now on your new branch.
-
 `git log` This command is used to check commit history in the branch you are in.
 
 `git status` This command is used to check the current status of files in the staging directory, if any files are checked or unchecked etc.
+
+`git add [file_name]` This command is used to add a particular file to the staging directory, from the working directory. The working directory is the folder you create the git file in, and the staging directory is the intermediate area before you commit any changes to the local repository. If you want to add all the files into the staging directory, you can use `git add --all`.
+
+`git commit -m "commit message"` This command is used to commit any changes made to the branch you are on currently, to the local repository. Commit messages are always written in current tense, and please make sure they are sensible when you want to look back at commit history.
+
+`git checkout [branch_name]` This command is used to move to the `[branch_name]`. It can be used with the `-b` modifier to create a new branch and move to it in one command, like so: `git checkout -b [branch_name]`. You are now on your new branch.
 
 ## Beyond the basics
 
