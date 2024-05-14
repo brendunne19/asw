@@ -16,7 +16,7 @@
 - [2.3 AS Watson Calendar](#23-as-watson-calendar)
 - [2.4 Currency](#24-currency)
 
-[3 SQL Coding - Part 1](#3-sql-coding---part-1)
+[3 SQL Basics](#3-sql-basics)
 - [3.1 Basic SQL Querying Concepts](#31-basic-sql-querying-concepts)
     - [3.1.1 Select Statements](#311-select-statements)
     - [3.1.2 Where, And & Setting Conditions](#312-where-and--setting-conditions)
@@ -34,14 +34,34 @@
 - [3.7 Transactional Base Table](#37-transactional-base-table)
 - [3.8 Final Note](#38-final-note)
 
-[4 Exercises - Part 1](#4-exercises---part-1)
+[4 Exercises](#4-exercises)
 - [4.1 Warm Up Questions - B_TRANSACTION only](#41-warm-up-questions---b_transaction-only)
-- [4.2 Exercises 1](#42-exercises-1)
-- [4.3 Exercises 2](#43-exercises-2)
+- [4.2 Exercises 1 - B_TRANSACTION](#42-exercises-1---b_transaction)
+- [4.3 Exercises 2 - B_STORE and B_TIME tables](#43-exercises-2---b_store-and-b_time-tables)
+- [4.4 Exercises 3 - B_CONTACT and More Complex Queries](#44-exercises-3---b_contact-b_member-and-more-complex-queries)
+- [4.5 Exercises 4 - Segmentation Tables and More on Tables](#45-exercises-4---segmentation-tables-and-more-on-tables)
+- [4.6 Exercises 5 - Age Calculations](#46-exercises-5---age-calculations)
 
 [5 Answers](#answers)
-- [4.1 Warm Up Questions - B_TRANSACTION only](#41-warm-up-questions---answers)
-- [4.2 Exercises 1](#42-exercises-1-answers)
+- [4.1 Warm Up Questions](#51-warm-up-questions-answers)
+- [4.2 Exercises 1](#52-exercises-1-answers)
+- [4.3 Exercises 2](#53-exercises-2-answers)
+- [4.4 Exercises 3](#54-exercises-3-answers)
+- [4.5 Exercises 4](#55-exercises-4-answers)
+- [4.6 Exercises 5](#56-exercises-5-answers)
+
+[6 Common Errors and Solutions](#6-common-errors-and-solutions)
+- [6.1 No Tablespace Error](#61-no-tablespace-error)
+- [6.2 No Temp Space Error](#62-no-temp-space-error)
+- [6.3 Group by Errors](#63-group-by-errors)
+- [6.4 Expected String Got Date](#64-expected-string-got-date)
+- [6.5 Table Does Not Exist]()
+- [6.6 Invalid Identifiers]
+- [6.7 Invalid Number]
+- [6.8 Running in Same Windows]
+- [6.9 Invalid Syntax]
+- [6.10 Missing Right Parenthesis]
+- [6.11 Final Tips & Tricks]
 
 ## 1 Getting Started 
 [<u>Back to Top</u>](#sql-academy)
@@ -122,10 +142,11 @@
     <img src="image-10.png" width=350>
 
 
-# 3 SQL Coding - Part 1
+# 3 SQL Basics
+
+[Back to Top](#table-of-contents)
 
 ### 3.1 Basic SQL Querying Concepts
-[<u>Back to Top</u>](#sql-academy)
 
 ### 3.1.1 Select Statements
 - Two basic ‘clauses’ for querying data from a table:
@@ -367,10 +388,12 @@
 - However, if you would like to specify a record, e.g. Estée Lauder, you will need to write it exactly as it is listed in the database, matching the upper and lowercase letters.
 - You can always use something like select distinct brand_name and find your desired record to see how it is formatted.
 
-# 4 Exercises - Part 1
+# 4 Exercises
+
+[Back to Top](#table-of-contents)
 
 ## 4.1 Warm Up Questions - B_TRANSACTION only
-[<u>Answers</u>](#41-warm-up-questions-answers)
+[Answers](#51-warm-up-questions-answers)
 
 1. Return all transactions that happened in MIT on the 1st of January 2023.
 
@@ -384,7 +407,7 @@
 
 
 ## 4.2 Exercises 1 - B_TRANSACTION
-[Answers](#42-exercises-1-answers)
+[Answers](#52-exercises-1-answers)
 
 1. How many Dolce and Gabbana products are listed in B_PRODUCT which are sold in MCH?
 
@@ -412,7 +435,7 @@
 
 ### Exercises 2
 
-[Answers](#43-exercises-2-answers)
+[Answers](#53-exercises-2-answers)
 
 1. Top 5 stores by Member Sales in MAT for week 20 2023.
 
@@ -424,7 +447,7 @@
 
 ## 4.4 Exercises 3 - B_CONTACT, B_MEMBER and More Complex Queries
 
-[Answers](#44-exercises-3-answers)
+[Answers](#54-exercises-3-answers)
 
 ### B_CONTACT
 
@@ -481,7 +504,7 @@ This doesn't have to be a nested query, it could be done with a having statement
 
 ### Exercises 3
 
-[Answers](#44-exercises-3-answers)
+[Answers](#54-exercises-3-answers)
 
 1. How many members shopped 2+ times in January 2023 in MAT?
 2. How many male ICINL members who enrolled in 2023 are shopping again in 2024 (up to 202405)?
@@ -620,7 +643,7 @@ And drop an index in the same fashion as tables: `drop index indexed_column_name
 
 ### Exercises 4
 
-[Answers](#45-exercises-4-answers)
+[Answers](#55-exercises-4-answers)
 
 1. How many VIP Members bought Lancôme in MAT in YTD March 2023?
 2. What were the sales by week of Regular Female Members shopping in Superdrug in February 2023?
@@ -629,7 +652,7 @@ And drop an index in the same fashion as tables: `drop index indexed_column_name
 5. Find the RFM Member Sales Split for MIT in August 2023.
 
 
-### 4.6 Exercises 5 - Age Calculations
+## 4.6 Exercises 5 - Age Calculations
 
 There are a couple different ways of looking at the age of members: Their actual ages, and the generation they are from. The more common way is finding their actual ages, but generations are becoming more popular. For now, we will focus on finding their ages, as the idea is the same for both.
 
@@ -651,7 +674,7 @@ We can also use a column called `age_num` in the contact table which has their c
 
 ### Exercises 5
 
-[Answers](#46-exercises-5-answers)
+[Answers](#56-exercises-5-answers)
 
 1. What is the average age of Marionnaud Hungary members which shopped Clinique in Week 25 2024?
 2. What were the total sales for members aged between 36 and 45 for the online TPS store in May 2023?
@@ -662,8 +685,8 @@ We can also use a column called `age_num` in the contact table which has their c
 # 5 Answers
 
 
-### 4.1 Warm Up Questions (Answers)
-[<u>Back to Questions</u>](#41-warm-up-questions---b_transaction-only)
+## 5.1 Warm Up Questions (Answers)
+[Back to Questions](#41-warm-up-questions---b_transaction-only)
 
 1.  Code:  
     ```
@@ -710,7 +733,7 @@ We can also use a column called `age_num` in the contact table which has their c
     ```
     <img src="image-19.png" width=100> 
 
-### 4.2 Exercises 1 (Answers)
+## 5.2 Exercises 1 (Answers)
 [Back to Questions](#42-exercises-1---b_transaction)
 1. Code:
     ```
@@ -838,7 +861,7 @@ We can also use a column called `age_num` in the contact table which has their c
     ;
     ```
 
-### 4.3 Exercises 2 (Answers)
+## 5.3 Exercises 2 (Answers)
 
 [Questions](#43-exercises-2---b_store-and-b_time-tables)
 
@@ -970,7 +993,7 @@ We can also use a column called `age_num` in the contact table which has their c
         fiscal_wk_idnt
     ;
 
-### 4.4 Exercises 3 (Answers)
+## 5.4 Exercises 3 (Answers)
 
 [Back to Questions](#exercises-3)
 
@@ -1077,7 +1100,7 @@ We can also use a column called `age_num` in the contact table which has their c
     ;
     ```
 
-### 4.5 Exercises 4 (Answers)
+## 5.5 Exercises 4 (Answers)
 
 [Questions](#exercises-4)
 
@@ -1193,7 +1216,7 @@ With the base tables, they will include most of the relevant information that we
 - technically this doesn't give you the %s, but you can take these outputs and find them in Excel much faster than doing it in SQL 
 - `nvl()` assigns a value to `NULL`, so when we left join members from the rfm table, if they don't have an RFM then they will be `NULL` and so we can say they are new to the BU
 
-### 4.6 Exercises 5 (Answers)
+## 5.6 Exercises 5 (Answers)
 
 [Back to Questions](#exercises-5)
 
@@ -1396,4 +1419,7 @@ This means that you need to group by a variable and you haven't yet done so. Mak
 
 ## 6.4 Expected String Got Date
 
-This often happens in joins when the two variables ou are joining on are not of the same format. In the 
+This often happens in joins when the two variables ou are joining on are not of the same format. In the tables `transaction_dt` etc. are of date format whilst `transaction_dt_key` is of string format, so trying to join on these two columns would cause this error. 
+
+To fix this, make sure columns are of the same format, and if they aren't try changing the format. For example, changing a date to a string can be done like so:
+```to_char(transaction_dt, 'DD-MON-YY')```
