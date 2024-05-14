@@ -14,7 +14,7 @@
 
 ## Beyond the basics
 
-`git pull [online_repository_name]` This command lets you pull all the files from an online repository to a local repository that you can edit yourself.
+`git pull [online_repository_name] [brand_name]` This command lets you pull all the files from an online repository to a local repository that you can edit yourself. It is nearly always `git pull origin main`, unless you are working on a different branch than main.
 
 `git push [branch_name] [online_name]` This command lets you push a branch from a local repository to an online repository.
 
