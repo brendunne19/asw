@@ -1,8 +1,9 @@
-# SQL Academy
-
+# AS Watson SQL Academy
 
 
 ## Table of Contents
+
+
 [1 Getting Started](#1-getting-started)
 - [1.1 Oracle SQL](#11-oracle-sql) 
 - [1.2 Downloading SQL](#12-downloading-sql)
@@ -25,7 +26,6 @@
     - [3.1.5 Distinct Clause](#315-distinct-clause)
     - [3.1.6 Joining Tables](#315-joining-tables)
     - [3.1.7 Case When](#317-case-when)
-
 - [3.2 B_TRANSACTION Table](#32-b_transaction-table)
 - [3.3 Main KPIs](#33-main-kpis)
 - [3.4 Time Periods](#34-main-time-periods)
@@ -43,28 +43,27 @@
 - [4.6 Exercises 5 - Age Calculations](#46-exercises-5---age-calculations)
 
 [5 Answers](#answers)
-- [4.1 Warm Up Questions](#51-warm-up-questions-answers)
-- [4.2 Exercises 1](#52-exercises-1-answers)
-- [4.3 Exercises 2](#53-exercises-2-answers)
-- [4.4 Exercises 3](#54-exercises-3-answers)
-- [4.5 Exercises 4](#55-exercises-4-answers)
-- [4.6 Exercises 5](#56-exercises-5-answers)
+- [5.1 Warm Up Questions](#51-warm-up-questions-answers)
+- [5.2 Exercises 1](#52-exercises-1-answers)
+- [5.3 Exercises 2](#53-exercises-2-answers)
+- [5.4 Exercises 3](#54-exercises-3-answers)
+- [5.5 Exercises 4](#55-exercises-4-answers)
+- [5.6 Exercises 5](#56-exercises-5-answers)
 
 [6 Common Errors and Solutions](#6-common-errors-and-solutions)
 - [6.1 No Tablespace Error](#61-no-tablespace-error)
 - [6.2 No Temp Space Error](#62-no-temp-space-error)
 - [6.3 Group by Errors](#63-group-by-errors)
 - [6.4 Expected String Got Date](#64-expected-string-got-date)
-- [6.5 Table Does Not Exist]()
-- [6.6 Invalid Identifiers]
-- [6.7 Invalid Number]
-- [6.8 Running in Same Windows]
-- [6.9 Invalid Syntax]
-- [6.10 Missing Right Parenthesis]
-- [6.11 Final Tips & Tricks]
+- [6.5 Table Does Not Exist](#65-table-does-not-exist)
+- [6.6 Invalid Identifiers](#66-invalid-identifierscolumn-ambiguously-defined)
+- [6.7 Invalid Number](#67-invalid-number)
+- [6.8 Running in Same Windows](#68-running-in-same-windows)
+- [6.9 Invalid Syntax](#69-invalid-syntax)
+- [6.10 Missing Right Parenthesis](#610-missing-right-parenthesis)
 
 ## 1 Getting Started 
-[<u>Back to Top</u>](#sql-academy)
+[Back to Top](#sql-academy)
 
 ### 1.1 Oracle SQL
 - We use Oracle SQL
@@ -1379,6 +1378,8 @@ With the base tables, they will include most of the relevant information that we
                 
 # 6 Common Errors and Solutions
 
+[Back to Top](#table-of-contents)
+
 ## 6.1 No Tablespace Error
 
 This occurs when there is a shortage of storage on the instance, i.e. the instance is full. To solve this, you can check who has the biggest tables and ask them to drop them to free up space. The following code can be used to check what the biggest tables in the instance are:
@@ -1421,5 +1422,70 @@ This means that you need to group by a variable and you haven't yet done so. Mak
 
 This often happens in joins when the two variables ou are joining on are not of the same format. In the tables `transaction_dt` etc. are of date format whilst `transaction_dt_key` is of string format, so trying to join on these two columns would cause this error. 
 
-To fix this, make sure columns are of the same format, and if they aren't try changing the format. For example, changing a date to a string can be done like so:
-```to_char(transaction_dt, 'DD-MON-YY')```
+To fix this, make sure columns are of the same format, and if they aren't try changing the format. For example, changing a date to a string can be done like so: `to_char(transaction_dt, 'DD-MON-YY')`. More examples of changing formats can be found online.
+
+## 6.5 Table Does Not Exist
+
+This occurs when you are referencing a table in your query that doesn't exist - it could simply be that you are in the wrong schema, or that the table has been dropped. If it is in another schema, you can simply preface the table name with the correct schema, for example `schema_name.table_name`, which is how we reference all the transaction tables from the CRM_TARGET schema. 
+
+Also, make sure to check you are on the correct instance too.
+
+## 6.6 Invalid Identifiers/Column Ambiguously Defined
+
+This happens when you have been vague with where a variable is coming from if it exists in multiple tables, which often occurs with `bu_key` or with `contact_key`, and should only occur when you are using a query with joins. 
+
+Make sure to assign each table with an alias, and then you can preface any ambiguous variables with the alias. See below for examples.
+
+```
+-- without alias - Column Ambiguously Defined Error
+select
+    bu_key,
+    sum(item_amt)
+from
+    crm_target.b_transaction t
+    join crm_target.b_time d on t.transaction_dt_key = d.date_key
+where
+    fiscal_mth_idnt = 202401
+group by 
+    bu_key
+;
+
+-- with alias - no error
+select
+    t.bu_key,
+    sum(t.item_amt)
+from
+    crm_target.b_transaction t
+    join crm_target.b_time d on t.transaction_dt_key = d.date_key
+where
+    d.fiscal_mth_idnt = 202401
+group by 
+    t.bu_key
+;
+```
+
+## 6.7 Invalid Number
+
+This occurs when an attempt is made to convert a character string into a number, and the string cannot be converted into a number. It can also happen when you've filtered by a column that is in number form, but you have not entered a number (for example `where store_key = '123'`). 
+
+You can check the format of each column in a table by running `describe schema_name.table_name`.
+
+## 6.8 Running in Same Windows
+
+If you need to run two different things in the same schema, you cannot do this in the same window - the second task will wait for the first task to finish before running. The easiest way around this is to just open a second instance of SQL Developer to run another query in the same schema.
+
+If you need to use the same instance, just open another schema and this will work fine.
+
+## 6.9 Invalid Syntax
+
+This occurs when you make mistakes in SQL keywords, the order of commands or use of quotation marks. For example, misspelling `create table` or putting `order by` before `group by`. 
+
+You can also get a **Missing Keywords** error which means you are missing `select`, `from` or `where` in your code.
+
+## 6.10 Missing Right Parenthesis
+
+This usually occurs when you are missing a bracket or an apostrophe. You can also get this when the issue is unrelated to parentheses, so it is worth checking the whole code for syntax issues.
+
+Sometimes, the line number for the error suggested by SQL Developer can be misleading, especially when working with PL/SQL, but it is normally the best place to start. Line numbers can be seen by right-clicking the margin in the SQL worksheet, and selecting 'Toggle Line Numbers'.
+
+[Back to Top](#table-of-contents)
