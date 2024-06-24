@@ -563,7 +563,7 @@ order by A.contact_key
 
 - each member has an RFM segment that is refreshed at the beginning of each month
 - when reporting on RFM segments we use the most recent RFM a member has. For example, if we were running a report using the period Jan-Jul 2024, we would measure RFM segments as of the 1st of August.
-- we use the following code to ensure we only use their most recent segment, and don't end up with duplicates: ```where seg_start_dt <= '01-AUG-2024' and (seg_end_dt >= '01-AUG-2024' or seg_end_dt is null)```
+- we use the following code to ensure we only use their most recent segment, and don't end up with duplicates: ```where seg_start_dt <= '01-AUG-24' and (seg_end_dt >= '01-AUG-24' or seg_end_dt is null)```
 -  RFM Segment calculations can differ for each BU, but they all have the following segments, in order of loyalty:
     1. VIP
     2. Loyal
