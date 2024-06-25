@@ -438,7 +438,7 @@
 
 2. Member sales KPIs for (ATV, ATF, ACV, IPT, PPU) in MCZ in 2023, by fiscal quarter (Q1-Q4)
 
-3. Top 5 men's fragrance SKUs sold in The Perfume Shop (TPS) within Liverpool throughout the December 2023 period.
+3. Top 5 men's fragrance SKUs sold in The Perfume Shop (TPS) within Lyon throughout the December 2023 period.
 
 4. For each week of January 2023, what percentage of members shopped on weekdays and on weekends in MIT?
 
@@ -945,8 +945,8 @@ We can also use a column called `age_num` in the contact table which has their c
         and member_sale_flag = 'Y'
         and transaction_type_name = 'Item'
         and p.kpi_exclusion_flag = 'N'
-        and city_name = 'LIVERPOOL'
-        and product_hier_1_l2_name = 'MENS FRAGRANCES'
+        and city_name = 'LYON'
+        and product_hier_3_l2_name = 'MEN FRAGRANCES'
     group by
         product_sku,
         product_name
@@ -975,8 +975,8 @@ We can also use a column called `age_num` in the contact table which has their c
         and member_sale_flag = 'Y'
         and transaction_type_name = 'Item'
         and p.kpi_exclusion_flag = 'N'
-        and city_name = 'LIVERPOOL'
-        and product_hier_1_l2_name = 'MENS FRAGRANCES'
+        and city_name = 'LYON'
+        and product_hier_3_l2_name = 'MEN FRAGRANCES'
     group by
         product_sku,
         product_name
