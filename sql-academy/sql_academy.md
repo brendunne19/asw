@@ -863,7 +863,10 @@ We can also use a column called `age_num` in the contact table which has their c
         and kpi_exclusion_flag = 'N'
         and product_hier_3_l1_name = 'SKIN CARE'
     group by
-        product_sku
+        product_sku,
+        brand_name,
+        product_name,
+        volume_val
     order by 
         total_sales desc
     ;
