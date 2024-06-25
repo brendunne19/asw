@@ -721,14 +721,25 @@ We can also use a column called `age_num` in the contact table which has their c
 4. Code:
     ```
     select 
-        sum(item_amt) as member_sales
+        count(*)
     from crm_target.b_transaction
-    where bu_key = 13
-    and transaction_dt_key = 20230530
-    and contact_key > 0
-    and member_sale_flag = 'Y';
+    where bu_key = 5
+    and transaction_dt_key = 20230916;
     ```
-    <img src="images/image-19.png" width=100> 
+    ![image](https://github.com/brendunne19/asw/assets/162445450/9a1c5184-d17d-42de-beb2-d0329fdbcb43)
+
+4. Code:
+    ```
+    select
+        sum(item_quantity_val)
+    from crm_target.b_transaction
+    where bu_key = 20
+    and transaction_dt_key = 20230325;
+    ```
+    ![image](https://github.com/brendunne19/asw/assets/162445450/d69ef1a9-8eec-44c0-9d4a-24af7242f0ad)
+
+
+
 
 ## 5.2 Exercises 1 (Answers)
 [Back to Questions](#42-exercises-1---b_transaction)
