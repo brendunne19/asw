@@ -1050,7 +1050,7 @@ We can also use a column called `age_num` in the contact table which has their c
                 join crm_target.b_contact c on i.contact_key = c.contact_key
             where
                 i.bu_key = 1
-                and enrol_dt <= '02-JAN-2023' and enrol_dt >= '31-DEC-2023'
+                and enrol_dt >= '02-JAN-2023' and enrol_dt <= '31-DEC-2023'
                 and gender_name = 'M'
             ) mem on I.contact_key = mem.contact_key
     where
