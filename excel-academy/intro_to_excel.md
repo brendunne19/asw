@@ -15,11 +15,17 @@
 
 * Double clicking the box in the bottom right of the active cell applies the formula down the column until there is no more data. This is useful when there is a large amount of data – saves you scrolling for ages. Make sure to lock the required cells in the formula though!
 
-* CTRL + arrow: Will move cursor to the end of the current object
+* CTRL + arrow key: Will move cursor to the end of the current object
 
 * CTRL + A: selects all of the current object
 
-* CTRL + SHIFT + L : Quickly adds filter drop down to a table
+* CTRL + SHIFT + L: Quickly adds filter drop down to a table
+
+* CTRL + T: Automatically creates a table of what is highlighted
+
+* CTRL + ALT + V: paste special values options 
+
+* CTRL + F: Find and replace values
 
 * F4: When referencing cells, you can use F4 to "lock" the cell values
 
@@ -29,7 +35,7 @@
 
 ALT shortcuts don't rely on you pressing all the keys at once, so you can hit them in the right order and it will carry out the command.
 
-* ALT + h + o + i: Changes all the column widths to fit all the filled cells in each highlighted column
+* ALT + H + O + I: Changes all the column widths to fit all the filled cells in each highlighted column
 
 * ALT + =: If you highlight a table of numbers, then this will sum the relevant columns and rows
 
@@ -104,28 +110,89 @@ In its simplest form, the VLOOKUP function says:
 
 ### 1.4 Other Useful Functions
 
-* `LEFT/RIGHT(abcd, n)`: returns the first n digits from the left/right of abcd
+* `=LEFT/RIGHT(abcd, n)`: returns the first n digits from the left/right of abcd
 
-* `INDEX(MATCH)`: can be used together to return a value from a grid, in a similar fashion to `VLOOKUP`
+* `=INDEX( MATCH() )`: can be used together to return a value from a grid, in a similar fashion to `VLOOKUP`
 
-* `IFERROR`: returns one value if there is no error, returns another if there is, this is useful to make spreadsheets readable if dividing by zero
+* `=IFERROR(value if no error, value if error)`: returns one value if there is no error, returns another if there is, this is useful to make spreadsheets readable if dividing by zero
 
-* `SUM`: sums a given range
+* `=SUM()`: sums a given range
 
-* Using a \$ in a formula locks whatever the \$ is before, e.g. $A1:$B6 will lock A and B but not 1 and 6. To lock both use $A$1 etc. This is useful when needing repeated formulas in other columns. For example if you are always referring to a fixed cell for BU code, you can lock this for all formulas. There is also a shortcut for this with F4, as seen in the [shortcuts section].(#10-shortcuts-and-formulas)
+* Using a \$ in a formula locks whatever the \$ is before, e.g. $A1:$B6 will lock A and B but not 1 and 6. To lock both use $A$1 etc. This is useful when needing repeated formulas in other columns. For example if you are always referring to a fixed cell for BU code, you can lock this for all formulas. There is also a shortcut for this with F4, as seen in the [shortcuts section](#moving-around-an-excel-file).
 
 
 ## 2.0 Report Building Techniques:
 
 ### 2.1 Creating Charts
 
+To create a chart using data from a table in Excel, we can follow these steps:
+
+1. Highlight the table you wish to visualise
+2. Select “Insert” tab in the toolbar
+3. Select recommended charts then choose the most appropriate chart 
+4. To add different features to the chart, select the “Chart Design” tab.
+
+The type of chart you want to use depends on how you’d like to visualise the date. For example, line charts can be used to visualise how a KPI changes over time, whereas a bar chart can be used to different proportions like year on year change in sales
+
+
 ### 2.2 Pivot Tables
+
+#### Creating a Pivot Table
+
+When we have a large set of data in Excel with many columns, we sometimes may want to summarise only a sub-set of the table. A fast way to do this would be to use a pivot table. 
+To create a pivot we follow these steps: 
+
+1. Highlight the table/data you wish to make a Pivot Table with
+2. Go to “Insert” and select “Pivot Table” 
+3. A pop up will appear, and choose the options you'd like
+
+#### Selecting Fields
+
+Drag and drop the fields from the top of the “Pivot Table Fields” into the “Filter”, “Columns”, “Rows” and “Values”. 
+* The “Filter” allows you to use that field as a filter for the table 
+* The “Columns” will place the fields along the top of the table 
+* The “Rows” will place the fields along the side of the table 
+* The “Values” will be the variables used in the table 
+
+#### Calculated Fields
+
+If we want to calculate some fields which don’t exist in our data, we can do this for use in our pivot tables. To do this we use the following steps: 
+1. On the ribbon at the top, select “PivotTable Analyze”, and select “Fields, Items, & Sets”. Then press “Calculated Field”.
+2. In the pop up, name the field, and create the formula you would like to use using the existing fields in the pivot table. Once completed press “OK”
+3. The created field should now appear under the other fields in the pivot chart. 
+
+#### Slicers
+
+To select filters easily for your pivot table. You can link the pivot table to a slicer. 
+1. Select the pivot chart which you would like to create a slicer for and on the “PivotTable Analyze” tab, select “Insert Slicer”. 
+2. Select which field you would like the slicer to work for, then hit “OK”
+3. To use the slicer, just select variable you would like to filter the chart using, and the pivot chart will automatically filter using the slicer
+
+If you have more than one pivot table which uses the same data source, you’ll be able to connect your slicers to work across all the pivot tables. **When creating the Pivot Tables, you will need to check the box that says "Add this data to the Data Model", otherwise this won't work.**
+1. Select the slicer with the field you would like to use across more tables. On the “Slicer” tab, select “Report Connections”. 
+2. Select the tables which you would like to connect. Then press “OK”, and this should connect all the tables to the slicer.
+
 
 ### 2.3 Pivot Charts
 
+Sometime we might want to create a chart that needs to change depending on a variable. For example, by changing BUs. We can link a chart to a pivot table and slicer to change when a variable is changed. 
+To create the chart: 
+1. Select the pivot table you want to create into a chart and select the “PivotChart Analyze” tab, and select “PivotChart”. 
+2. Select the type of chart you wish to use. You can edit these charts once you select “OK” using the “Format” tab
+
+This should connect all existing slicers to chart (given the slicer is connected to the same table) if not, use the previous slide to create/connect a slicer
+
+
 ### 2.4 Drop Downs
 
-### 2.5 Pasting types
+A drop down is a very useful tool in reports when we want to filter through certain variables 
+To create a drop down we follow these steps: 
+1. Create the list of variables you would like to use in a column which isn’t used on a sheet in Excel
+2. Click on the cell where you would like to create the drop down
+3. Go to the “Data” tab and select “Data Validation”, then select “Data Validation…” 
+4. Then under “Allow” select list. Then under “Source”, highlight the cells which you would like to use. Then select “OK”
+
+> Note: to undo the drop down, follow the same steps, although at the “Allow” step, select number instead of list.
 
 
 ## 3.0 Exercises
