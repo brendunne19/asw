@@ -438,7 +438,7 @@
 
 2. Member sales KPIs for (ATV, ATF, ACV, IPT, PPU) in MCZ in 2023, by fiscal quarter (Q1-Q4)
 
-3. Top 5 men's fragrance SKUs sold in The Perfume Shop (TPS) within Liverpool throughout the December 2023 period.
+3. Top 5 men's fragrance SKUs sold in The Perfume Shop (TPS) within Lyon throughout the December 2023 period.
 
 4. For each week of January 2023, what percentage of members shopped on weekdays and on weekends in MIT?
 
@@ -656,13 +656,13 @@ There are a couple different ways of looking at the age of members: Their actual
 The following code can be used for calculating age bands, which is based off of `birth_dt` to enable historical age data:
 
 ```
-case when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 16 and 20 then 'Under 20'
-when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 21 and 25 then '21-25'
-when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 26 and 35 then '26-35'
-when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 36 and 45 then '36-45'
-when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 46 and 55 then '46-55'
-when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 56 and 65 then '56-65'
-when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 66 and 100 then '65+'
+case when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 16 and 20 then 'Under 20'
+when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 21 and 25 then '21-25'
+when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 26 and 35 then '26-35'
+when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 36 and 45 then '36-45'
+when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 46 and 55 then '46-55'
+when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 56 and 65 then '56-65'
+when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 66 and 100 then '65+'
 else 'Unspecified' end as age
 ```
 - note that it will need to be put in both the select and the group by statements
@@ -721,14 +721,25 @@ We can also use a column called `age_num` in the contact table which has their c
 4. Code:
     ```
     select 
-        sum(item_amt) as member_sales
+        count(*)
     from crm_target.b_transaction
-    where bu_key = 13
-    and transaction_dt_key = 20230530
-    and contact_key > 0
-    and member_sale_flag = 'Y';
+    where bu_key = 5
+    and transaction_dt_key = 20230916;
     ```
-    <img src="images/image-19.png" width=100> 
+    ![image](https://github.com/brendunne19/asw/assets/162445450/9a1c5184-d17d-42de-beb2-d0329fdbcb43)
+
+4. Code:
+    ```
+    select
+        sum(item_quantity_val)
+    from crm_target.b_transaction
+    where bu_key = 20
+    and transaction_dt_key = 20230325;
+    ```
+    ![image](https://github.com/brendunne19/asw/assets/162445450/d69ef1a9-8eec-44c0-9d4a-24af7242f0ad)
+
+
+
 
 ## 5.2 Exercises 1 (Answers)
 [Back to Questions](#42-exercises-1---b_transaction)
@@ -852,7 +863,10 @@ We can also use a column called `age_num` in the contact table which has their c
         and kpi_exclusion_flag = 'N'
         and product_hier_3_l1_name = 'SKIN CARE'
     group by
-        product_sku
+        product_sku,
+        brand_name,
+        product_name,
+        volume_val
     order by 
         total_sales desc
     ;
@@ -931,8 +945,8 @@ We can also use a column called `age_num` in the contact table which has their c
         and member_sale_flag = 'Y'
         and transaction_type_name = 'Item'
         and p.kpi_exclusion_flag = 'N'
-        and city_name = 'LIVERPOOL'
-        and product_hier_1_l2_name = 'MENS FRAGRANCES'
+        and city_name = 'LYON'
+        and product_hier_3_l2_name = 'MEN FRAGRANCES'
     group by
         product_sku,
         product_name
@@ -961,8 +975,8 @@ We can also use a column called `age_num` in the contact table which has their c
         and member_sale_flag = 'Y'
         and transaction_type_name = 'Item'
         and p.kpi_exclusion_flag = 'N'
-        and city_name = 'LIVERPOOL'
-        and product_hier_1_l2_name = 'MENS FRAGRANCES'
+        and city_name = 'LYON'
+        and product_hier_3_l2_name = 'MEN FRAGRANCES'
     group by
         product_sku,
         product_name
@@ -1036,7 +1050,7 @@ We can also use a column called `age_num` in the contact table which has their c
                 join crm_target.b_contact c on i.contact_key = c.contact_key
             where
                 i.bu_key = 1
-                and enrol_dt <= '02-JAN-2023' and enrol_dt >= '31-DEC-2023'
+                and enrol_dt >= '02-JAN-2023' and enrol_dt <= '31-DEC-2023'
                 and gender_name = 'M'
             ) mem on I.contact_key = mem.contact_key
     where
@@ -1305,13 +1319,13 @@ With the base tables, they will include most of the relevant information that we
     from
         (
             select
-                case when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 16 and 20 then 'Under 20'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 21 and 25 then '21-25'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 26 and 35 then '26-35'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 36 and 45 then '36-45'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 46 and 55 then '46-55'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 56 and 65 then '56-65'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 66 and 100 then '65+'
+                case when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 16 and 20 then 'Under 20'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 21 and 25 then '21-25'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 26 and 35 then '26-35'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 36 and 45 then '36-45'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 46 and 55 then '46-55'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 56 and 65 then '56-65'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 66 and 100 then '65+'
                     else 'Unspecified' end as age,
                 sum(case when fiscal_mth_idnt = 202403 then item_amt end) as sales_ty
                 sum(case when fiscal_mth_idnt = 202303 then item_amt end) as sales_ly
@@ -1326,13 +1340,13 @@ With the base tables, they will include most of the relevant information that we
                 and kpi_exclusion_flag = 'N'
                 and (fiscal_mth_idnt = 202403 or fiscal_mth_idnt = 202303)
             group by 
-                case when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 16 and 20 then 'Under 20'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 21 and 25 then '21-25'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 26 and 35 then '26-35'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 36 and 45 then '36-45'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 46 and 55 then '46-55'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 56 and 65 then '56-65'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 66 and 100 then '65+'
+                case when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 16 and 20 then 'Under 20'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 21 and 25 then '21-25'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 26 and 35 then '26-35'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 36 and 45 then '36-45'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 46 and 55 then '46-55'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 56 and 65 then '56-65'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 66 and 100 then '65+'
                     else 'Unspecified' end
         )
     ;
@@ -1341,13 +1355,13 @@ With the base tables, they will include most of the relevant information that we
 4. Code:
     ```
     select
-        case when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 16 and 20 then 'Under 20'
-            when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 21 and 25 then '21-25'
-            when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 26 and 35 then '26-35'
-            when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 36 and 45 then '36-45'
-            when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 46 and 55 then '46-55'
-            when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 56 and 65 then '56-65'
-            when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 66 and 100 then '65+'
+        ccase when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 16 and 20 then 'Under 20'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 21 and 25 then '21-25'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 26 and 35 then '26-35'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 36 and 45 then '36-45'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 46 and 55 then '46-55'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 56 and 65 then '56-65'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 66 and 100 then '65+'
             else 'Unspecified' end as age,
         count(distinct t.contact_key) as mems
     from
@@ -1363,13 +1377,13 @@ With the base tables, they will include most of the relevant information that we
         and kpi_exclusion_flag = 'N'
         and fiscal_mth_idnt = 202310
         and supplier_name like '%SHISEIDO%'
-        group by case when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 16 and 20 then 'Under 20'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 21 and 25 then '21-25'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 26 and 35 then '26-35'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 36 and 45 then '36-45'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 46 and 55 then '46-55'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 56 and 65 then '56-65'
-                    when trunc(months_between('DD-MMM-YY', c.birth_dt) / 12) between 66 and 100 then '65+'
+        group by case when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 16 and 20 then 'Under 20'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 21 and 25 then '21-25'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 26 and 35 then '26-35'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 36 and 45 then '36-45'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 46 and 55 then '46-55'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 56 and 65 then '56-65'
+                    when trunc(months_between(d.calendar_dt, c.birth_dt) / 12) between 66 and 100 then '65+'
                     else 'Unspecified' end
     ;
     ```
