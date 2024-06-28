@@ -1,5 +1,5 @@
 /* 
-Excel Academy - KPI Dataset Example
+Excel Academy - KPI Dataset Answers
     - if your code isn't identical, don't worry too much, this is more about
     getting the Excel right than the SQL :)
     - as long as the output gives a pretty similar dataset, you're good to go!

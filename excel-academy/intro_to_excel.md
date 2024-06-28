@@ -4,8 +4,22 @@
 
 ## Table of Contents
 
-[1.0 Formulas](#10-simple-formulas)
+[1.0 Shortcuts and Formulas](#10-shortcuts-and-formulas)
+* [1.1 Logical Functions](#11-logical-functions-if-and-or-not-and-ifs)
+* [1.2 SUMIFS](#12-sumifs)
+* [1.3 VLOOKUP](#13-vlookup)
+* [1.4 Other Useful Functions](#14-other-useful-functions)
 
+[2.0 Report Building Techniques](#20-report-building-techniques)
+* [2.1 Creating Charts](#21-creating-charts)
+* [2.2 Pivot Tables](#22-pivot-tables)
+* [2.3 Pivot Charts](#23-pivot-charts)
+* [2.4 Drop Downs](#24-drop-downs)
+
+[3.0 Exercises](#30-exercises)
+* [3.1 Cereal Dataset](#31-exercise-1-cereal-dataset)
+* [3.2 KPI Dataset](#32-exercise-2-kpi-dataset)
+* [3.3 ]
 
 ## 1.0 Shortcuts and Formulas
 
@@ -123,6 +137,8 @@ In its simplest form, the VLOOKUP function says:
 
 ## 2.0 Report Building Techniques:
 
+[Back to Top](#as-watson-edp-academy)
+
 ### 2.1 Creating Charts
 
 To create a chart using data from a table in Excel, we can follow these steps:
@@ -136,6 +152,8 @@ The type of chart you want to use depends on how you’d like to visualise the d
 
 
 ### 2.2 Pivot Tables
+
+[Back to Top](#as-watson-edp-academy)
 
 #### Creating a Pivot Table
 
@@ -175,6 +193,8 @@ If you have more than one pivot table which uses the same data source, you’ll 
 
 ### 2.3 Pivot Charts
 
+[Back to Top](#as-watson-edp-academy)
+
 Sometime we might want to create a chart that needs to change depending on a variable. For example, by changing BUs. We can link a chart to a pivot table and slicer to change when a variable is changed. 
 To create the chart: 
 1. Select the pivot table you want to create into a chart and select the “PivotChart Analyze” tab, and select “PivotChart”. 
@@ -184,6 +204,8 @@ This should connect all existing slicers to chart (given the slicer is connected
 
 
 ### 2.4 Drop Downs
+
+[Back to Top](#as-watson-edp-academy)
 
 A drop down is a very useful tool in reports when we want to filter through certain variables 
 To create a drop down we follow these steps: 
@@ -196,6 +218,8 @@ To create a drop down we follow these steps:
 
 
 ## 3.0 Exercises
+
+[Back to Top](#as-watson-edp-academy)
 
 ### 3.1 Exercise 1 (Cereal Dataset)
 
@@ -210,6 +234,8 @@ Make a copy of the Cereal dataset, and answer the following questions (they are 
 4. Using the filter on the “Questions” page, make it so that the total number of calories you would consume if you were to eat 1 bowl of every cereal from the selected manufacturer. 
 
 ### 3.2 Exercise 2 (KPI Dataset)
+
+[Back to Top](#as-watson-edp-academy)
 
 #### Generating the dataset 
 For this exercise, we want you to generate your own dataset! We want the following columns for our dataset, with examples of what the data should be like:
