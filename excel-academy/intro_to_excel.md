@@ -196,3 +196,45 @@ To create a drop down we follow these steps:
 
 
 ## 3.0 Exercises
+
+### 3.1 Exercise 1 (Cereal Dataset)
+
+Make a copy of the Cereal dataset, and answer the following questions (they are a copy of the ones found in the Questions tab in the spreadsheet). These are to get you started using formulas in excel, and aren't trying to trick you or overcomplicate anything.
+
+1. What would be the total number of calories you would consume if you were to eat 1 bowl of every Kellogg’s manufactured cereal?
+
+2. What amount of sugar does Great Grains Pecan contain?
+
+3. What would be the total amount of potassium you would consume if you were to eat 1 bowl of every General Mills manufactured cereal which contained exactly 110 calories? 
+
+4. Using the filter on the “Questions” page, make it so that the total number of calories you would consume if you were to eat 1 bowl of every cereal from the selected manufacturer. 
+
+### 3.2 Exercise 2 (KPI Dataset)
+
+#### Generating the dataset 
+For this exercise, we want you to generate your own dataset! We want the following columns for our dataset, with examples of what the data should be like:
+
+| BU_CODE | FISCAL_DAY_DESC | FISCAL_WK_IDNT | CHANNEL | SEG_NUM | GENDER | AGE | SALES | MEMBERS | ORDERS | ITEMS |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| MCZ | MONDAY | 202401 | ONLINE | LOYAL | Female | 26-35 | 4107.5 | 2 | 2 | 5  |
+| MHU | WEDNESDAY | 202403 | STORE | NEW | Male | 56-65 | 2198 | 1 | 1 | 3  |
+
+* The BUs should only be from Marionnaud Central Europe (MCE) which is MHU, MCZ, MSK and MRO.
+* The data should only be from Fiscal January 2024
+* It should only be member data, no non-member transactions
+* It should use the RFM segments for `SEG_NUM`
+* Channel is online for transactions from the Web stores, and Store for anything else
+
+> Remember that MCE don't necessarily use Euros as their currency, so the sales amounts might seem a bit high but don't worry about this for now. If we were actually reporting on this data, then we would want to convert them to the same currency. 
+
+Once you have this dataset, copy it into an excel file (it should be about 17,000 rows of data, so it will take a moment to select all of it).
+
+If you are struggling to recreate the dataset, there is an example of code that generates it in the datasets folder, but only look at this if you are really stuck! 
+
+#### Presenting the Dataset
+
+Create a new blank excel and paste your sql query results into the new tab. We want to compare four KPIs (ACV, ATV, PPU and IPT) across four different charts by week and day, that can be filtered by BU, Channel, RFM Segment, Gender and Age. 
+
+The filters should automatically change each chart at the same time (hint: slicers!). The charts should all be visible at the same time, and it should look pretty too.
+
+> There are multiple ways of doing this, so don't worry too much if you don't do it the same way as the "answers" did, as long as you get the same results!
