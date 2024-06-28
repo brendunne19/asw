@@ -2,6 +2,8 @@
 
 ## Running and Key Notes
 
+Note that some folders have been removed, `data`, `models` and `notebooks`, in order for me to share this publicly but are shown below in the folder structures.
+
 You can train a new model, or predict using a pre-trained model by setting the months in the config file, and then running `run_train_model.py` or `run_predict_model.py` respectively.
 
 ## Parameters and File Structure
