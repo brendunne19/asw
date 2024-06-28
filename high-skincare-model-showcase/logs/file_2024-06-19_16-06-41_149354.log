@@ -1,0 +1,47 @@
+2024-06-19 16:06:41.165 | INFO     | __main__:run_predict:12 - bu_key=16 bu_code='MFR' model_label='boostdown_model' run_type='ONE-OFF' current_month_flag=0 specified_start_month=202202 specified_end_month=202301
+2024-06-19 16:06:41.165 | INFO     | __main__:run_predict:19 - run data sql proc
+2024-06-19 16:26:20.193 | INFO     | __main__:run_predict:21 - get data
+2024-06-19 16:29:10.352 | INFO     | __main__:run_predict:23 - data loading complete
+
+2024-06-19 16:29:10.360 | INFO     | __main__:run_predict:24 -    contact_key  email_flag  sms_flag  dm_flag  high_skincare_flag  ty_sales  ty_units  ty_visits  ...  lancome_sales  qiriness_sales  lauder_sales  chanel_sales guerlain_sales ioma_sales filorga_sales shiseido_sales
+0         1000           0         0        1                   1    533.33       9.0          4  ...            NaN           45.49           NaN           NaN            NaN        NaN           NaN            NaN
+1       360000           1         1        1                   1    683.65      15.0          7  ...            NaN             NaN           NaN           NaN            NaN        NaN           NaN            NaN
+2       380000           1         0        1                   0     18.61       2.0          1  ...            NaN             NaN           NaN           NaN            NaN        NaN           NaN            NaN
+3       630000           1         1        1                   0    458.55       9.0          3  ...            NaN             NaN           NaN           NaN            NaN        NaN           NaN            NaN
+4       650000           0         1        1                   0     39.18       2.0          1  ...            NaN             NaN           NaN           NaN            NaN        NaN           NaN            NaN
+
+[5 rows x 45 columns]
+2024-06-19 16:29:10.473 | INFO     | __main__:run_predict:27 - begin cleaning data
+2024-06-19 16:29:10.480 | INFO     | __main__:run_predict:29 - check member split and save graph
+2024-06-19 16:29:13.950 | INFO     | __main__:run_predict:31 - add extra features
+2024-06-19 16:29:14.027 | INFO     | __main__:run_predict:33 - check null columns, and replace with zeroes
+2024-06-19 16:31:10.284 | INFO     | __main__:run_predict:35 - store metadata
+2024-06-19 16:31:16.369 | INFO     | __main__:run_predict:37 - remove skew
+2024-06-19 16:31:42.798 | INFO     | __main__:run_predict:39 - drop erroneous date members
+2024-06-19 16:31:59.595 | INFO     | src.models.train:drop_erroneous_date_members:174 - 0.0% rows dropped
+2024-06-19 16:31:59.611 | INFO     | __main__:run_predict:41 - drop weird enrol date members
+2024-06-19 16:32:10.061 | INFO     | __main__:run_predict:43 - convert dates to days
+2024-06-19 16:33:32.888 | INFO     | __main__:run_predict:45 - creating flag features
+2024-06-19 16:33:36.042 | INFO     | __main__:run_predict:47 - scale data
+2024-06-19 16:36:34.905 | INFO     | __main__:run_predict:49 - data cleansing complete
+
+2024-06-19 16:36:34.924 | INFO     | __main__:run_predict:52 - load in scaled data
+2024-06-19 16:37:30.430 | INFO     | __main__:run_predict:54 - split data
+2024-06-19 16:37:32.064 | INFO     | __main__:run_predict:56 - upsample data with SMOTE
+2024-06-19 16:38:23.492 | INFO     | __main__:run_predict:58 - train model
+2024-06-19 16:38:33.679 | INFO     | __main__:run_predict:60 - visualise coefficients
+2024-06-19 16:38:34.076 | INFO     | __main__:run_predict:62 - visualise confusion matrix
+2024-06-19 16:38:34.137 | INFO     | src.models.train:visualise_confusion_matrix:379 - Accuracy = 0.84
+
+2024-06-19 16:38:34.146 | INFO     | src.models.train:visualise_confusion_matrix:380 - Classification report:
+
+2024-06-19 16:38:34.710 | INFO     | src.models.train:visualise_confusion_matrix:381 -               precision    recall  f1-score   support
+
+           0       0.96      0.84      0.89    143296
+           1       0.51      0.83      0.63     29463
+
+    accuracy                           0.84    172759
+   macro avg       0.74      0.83      0.76    172759
+weighted avg       0.88      0.84      0.85    172759
+
+2024-06-19 16:38:35.138 | INFO     | __main__:run_predict:64 - training complete
