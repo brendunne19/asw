@@ -6,11 +6,9 @@
 
 
 [1 Getting Started](#1-getting-started)
-- [1.1 Oracle SQL](#11-oracle-sql) 
-- [1.2 Downloading SQL](#12-downloading-sql)
-- [1.3 Opening and Saving a File](#13-opening-and-saving-a-file)
-- [1.4 SQL Language & Database Concepts](#14-sql-language--database-concepts)
-- [1.5 Setting Up Connections](#15-setting-up-connections)
+- [1.1 Spark SQL](#11-spark-sql) 
+- [1.2 Opening and Saving a File](#12-opening-and-saving-a-file)
+- [1.3 Database Concepts](#13-database-concepts)
 
 [2 Using the Database](#2-using-the-database)
 - [2.1 AS Watson Data Model (ADM) Structure & Data Tables](#21-as-watson-data-model-adm-structure--data-tables)
@@ -66,341 +64,120 @@
 ## 1 Getting Started 
 [Back to Top](#sql-academy)
 
-### 1.1 Oracle SQL
-- We use Oracle SQL
-- There are other versions, including SQL Server, PostgreSQL, MySQL, SQLite etc. but we do not use these.
-- There are minor differences, but you may find that a solution you find online might use a function that is in SQL Server but not Oracle SQL or visa versa.
-- When using Google to find an answer (Stack Overflow is your best friend), make sure to add Oracle SQL to get the relevant result.
-- Note that Databricks for the EDP environment uses Spark SQL which has some different syntax to Oracle SQL, but this is something that you might use later into your time at AS Watson. 
-
-### 1.2 Downloading SQL
-- <u>[SQL Developer](https://aswatsonuk.sharepoint.com/sites/ASWGD/Shared%20Documents/Forms/AllItems.aspx?csf=1&web=1&e=6f1lwM&OR=Teams%2DHL&CT=1666772057858&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIyNy8yMjA5MDQwMDcxMiIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D&cid=ff58d4e3%2Dc07a%2D4c8a%2D8d81%2Df7b71ac83e11&FolderCTID=0x012000372904FE328ED84D95719C40897751FE&id=%2Fsites%2FASWGD%2FShared%20Documents%2F1%2E%20Analytics%2F02%2E%20Data%20Management%2F00%2E%20General%2FTools&viewid=bd31f600%2D1e1a%2D4ba8%2Db27b%2Dc105f08eec46)</u>
-- Unzip the folder ‘sqldeveloper-18.2.0.183.1748-x64’ to your C drive ‘C:\Users\{Username}’
-- Pin to task bar so that you can find it easily
-
-### 1.3 Opening and Saving a File
-- To open a file drag it into a SQL window that isn’t running any code. (if new window, need to open a connection first)
-- To open a blank file, open a new connection and then save it as a new file
-- To save an untitled file either press “Ctrl + S” or select “File” then “Save As” and save the file in the follow path: 
-
-    <img src="images/image-3.png" height=120>
-
-### 1.4 SQL Language & Database Concepts
-
-- SQL = Structured Query Language 
-- Originally designed for creating and manipulating data stored in a relational database 
-- We use 3 data bases: 
-    - CRMBMAP – known as MRD Instance
-    - CRMBKVP – known as KV Instance
-    - CRMBSDP – Known as SD Instance
-- Schemas are collections of database objects, namely tables, but also procedures, packages etc. 
-- For example, if you want to look at ICI Paris Netherlands data, this can only be accessed in the CRMBKVP schema (Check Business Units excel for which schema to use)
-- CRM_TARGET schema holds all transactional and member data 
-- You will probably get your own schema, which is debatably quite exciting.
-
-### 1.5 Setting Up Connections
-- Connecting to the database under a new schema: 
-    1. Select “View” and then “Connections”. Under Connections, press the Plus button
-    2. Name the connection, enter the username and password. Copy and use the same hostname and port. 
-    3. Change the Service Name to reflect which instance you would like to connect to. 
-    4. Select “Test” and is the connection was successful, then press “Save”
-- Note you will have to repeat this 
-   for each instance 
-
-    ![alt text](images/image-1.png)
+### 1.1 Spark SQL
+- Databricks uses Spark SQL PostgreSQL, MySQL, SQLite etc. but we do not use these.
+- There are minor differences to Oracle SQL, but you may find that a solution that works for Oracle SQL doesn't for databricks, or visa versa.
+- When using Google to find an answer (Stack Overflow is your best friend), make sure to add Spark SQL to get the relevant result.
 
 
-# 2 Using the Database
-[<u>Back to Top</u>](#sql-academy)
-
-### 2.1 AS Watson Data Model (ADM) Structure & Data Tables
-- <u>[ASW ADM Data Model](https://aswatsonuk.sharepoint.com/:x:/r/sites/ASWGD/_layouts/15/Doc.aspx?sourcedoc=%7B3AD22FDD-FD8B-41CE-B887-2342F8124305%7D&file=EU%20ADM%20Data%20Model%20%26%20More.xlsx&action=default&mobileredirect=true&wdLOR=c0C157FCF-63DE-4B0F-B7BB-9A66FE1E1577)</u>
-- Shows the link between the main tables in ADM and all the rules for each BU
-    <img src="images/image-5.png" width=600>
-
-### 2.2 Business Units
-- <u>[Business Units](https://aswatsonuk.sharepoint.com/:x:/r/sites/ASWGD/_layouts/15/Doc.aspx?sourcedoc=%7B29874E8B-EB31-4477-897E-F2AE3FBAD053%7D&file=Business%20Units.xlsx&action=default&mobileredirect=true)</u>
-- Each BU has a different bu_key and bu_code so that we can easily distinguish between them in the data tables
-- We often refer to MCE – Marionnaud Central Europe as: MHU, MRO, MCZ and MSK 
-- On the second column you can see which instance you need to have selected in order to access that BU's data
-    ![alt text](images/image-7.png)
+### 1.2 Opening and Saving a File
+- Databricks is all in the cloud so files are automatically saved once created
 
 
-### 2.3 AS Watson Calendar
-- <u>[Calendar](https://aswatsonuk.sharepoint.com/:x:/r/sites/ASWGD/_layouts/15/Doc.aspx?sourcedoc=%7B43BB6B4B-FE9C-473D-867C-F9C19EEEB24F%7D&file=Calendrier%202010%20-%202023%20AS%20WATSON.xls&action=default&mobileredirect=true)</u>
-- We follow a financial/fiscal calendar which shifts the first day of every month to be a Monday.
-- ![alt text](images/image-9.png)
+### 1.3 Database Concepts
+
+- Each BU has their own databricks cluster (similar idea to a schema), so you can only access one BUs data at a time but they are typically much faster
+- There is also a multi-BU cluster, with all of the BUs on it but this should only be used if **absolutely** necessary, as there are a limited amount of users on it
 
 
-### 2.4 Currency
-- Sales in the database are all in local currencies
-- When we group together more than one BU we will need to convert the currency to a common one. 
-- Most commonly either converted to EUR (€) or HKD  
-    <img src="images/image-10.png" width=350>
-
-
-# 3 SQL Basics
+# 2 SQL in Databricks
 
 [Back to Top](#table-of-contents)
 
-### 3.1 Basic SQL Querying Concepts
+## 2.1 Using SQL in a Notebook
 
-### 3.1.1 Select Statements
-- Two basic ‘clauses’ for querying data from a table:
-    1. tell it what you want ```select```
-    2. tell it where to get it from ```from```
-- Selecting everything in a specified table:
-    ```
-    select *
-    from table_name
-    ```
-- Run code using CTRL + Enter or highlight and click <img src="images/image-11.png" height=15> in the top left
-- Every query should have a ```;``` at the end
-- If we wanted to select just one column:
-    ```
-    select column_name
-    from table_name;
-    ```
-- You can name a column using ```as```
-    ```
-    select column_name as new_name
-    from table_name;
-    ```
+In databricks, we use notebooks to access our data. They can contain SQL, Python, Markdown, R or Scala. 
 
-### 3.1.2 Where, And & Setting Conditions
-- If we want to filter a table to enter select certain features we use a where clause.
-- Filter only female members e.g.:
-    ```
-    select * 
-    from table_name
-    where gender = ‘F’;
-    ```
-- An ```and``` clause will be used if we are using more than one filter/exclusion.
-- Example: filter by female and older than 25 years
-    ```
-    select *
-    from table_name
-    where gender = ‘F’
-    and age > 25;
-    ```
+We can use SQL within a python cell, or query directly from a SQL cell, which will return a Spark Dataframe that can be accessed from other cells.
 
 
-### 3.1.3 Aggregate Functions
-- We use built in functions to aggregate data 
-- Has to be used whenever an aggregate function has been used 
-- `group by` – e.g. if we wanted sales by date:
-    ```
-    select transaction_dt_key, sum(sale_amt)
-    from crm_target.b_transaction
-    group by transaction_dt_key ; 
-    ```
-- Wide range of aggregate and analytical functions which can be used: 
-
-    - `sum()` – sums the values on selected column 
-    - `count()` – counts the # of values returned on selected column 
-    - `count(distinct )` – counts the # of unique valued returned on selected column 
-    - `min()` – returns the smallest value on selected column 
-    - `max()` – returns the largest value on selected column 
-    - `avg()` – returns the mean average of values on selected column
-
-
-### 3.1.4 Like Clause
-- When it is unknown what the correct format of a variable is in one of the tables (as they might differ BU to BU – e.g. brand names in the b_product table), we can use like function to help us out. 
-- Note that this is typically quite inefficient, so avoid if possible.
-- It is case sensitive so usually we use `upper(brand_name) like ‘%CLINIQUE%’` which converts the brand_name value to uppercase
-- It is used in the where clause and is used like: 
-    ```
-    select brand_name
-    from crm_target.b_product 
-    where bu_key = 13
-    and brand_name like ‘%CLINIQUE%’
-    group by brand_name ;
-    ```
-
-### 3.1.5 Distinct Clause
-- In order to get unique values from an output, use the distinct keyword.
-- Used after the `select`, this will only return unique rows.
-
-- E.g. `select distinct contact_key from table_name`
-    - Returns only unique contact keys
-    - This can be used in conjunction with a counting argument to count unique shoppers
-        - E.g. `select count(distinct contact_key) from table_name`
-
-
-### 3.1.6 Joining Tables
-- You can join tables together to get more data 
-- Documentation: https://www.w3schools.com/sql/sql_join.asp
-- There are a few types of joins but the terminology for joining the tables is the same
-- Note that `join` is the same as `inner join`, but `inner join` was used in older versions of SQL.
- ![alt text](images/image-14.png)
-- You will mostly use `join` and `left join`, but the others can occasionally be handy.
-- Something to note:
-    - You might see some very old code using (+), but Oracle does not recommend using this anymore.
-
-    ![alt text](images/image-15.png)
-- Duplicate columns
-    -   ```
-        select 
-            a.contact_key
-        ,	b.contact_key
-        from crm_target.b_transaction a
-        join crm_target.b_contact b on a.contact_key = b.contact_key
-        ```
-    - If each table contains the same column name, you will need to specify which column from each table to join on
-    - Give each table an alias here we use `a` and `b`
-    - Another example:
-        ```
-        select 
-            p.product_name
-        ,	sum(t.item_amt) as sales
-        from crm_target.b_transaction t 
-        inner join crm_target.b_product p on p.product_key = t.product_key
-         where t.bu_key = 17 
-        and t.transaction_dt_key between 20220101 and 20220120
-        and member_sale_flag = ‘Y’
-        group by p.product_name;
-        ```
-        
-    
-
-### 3.1.7 Case When
-- If we wanted to create a variable based of a condition (‘IF’ statement for example), we can use `case when`:
-    ```
-    select 
-        case when column_1 = condition_1 then ‘A’
-            when column_1 = condition_2 then ‘B’
-            else ‘C’ end as letters
-    ,	column_2
-    from table_name
-    group by case when column_1 = condition_1 then ‘A’
-            when column_1 = condition_1 then ‘B’
-            else ‘C’ end, column_2;
-    ```
-- Often used for creating age bands
-
-    <img src="images/image-16.png" width=400>
-
-
-### 3.2 B_TRANSACTION Table
+## 2.2 rdm.f_transaction_detail Table (B_TRANSACTION Equivalent)
 [<u>Back to Top</u>](#sql-academy)
 
-- ```CRM_TARGET.B_TRANSACTION``` ![alt text](images/image-12.png)
 - Contains all transactional data 
-- We use ```transaction_dt_key``` (date of transaction) to set which dates we want to see data for
-- There are multiple ```transation_type_name``` (header rows) in the ```b_transaction``` table. The most used are:
-    - Sale – shows the total sale breakdown for the purchase
-    - Item – breaks the purchase down to item level 
-    - Promotion – breaks the purchase down into Promotions which were used
-    - Point – shows the point breakdown for the purchase (for member transactions)
-- `member_key` / `contact_key` are unique numbers used to represent members. 
-- A non-member will have a contact key of 0
-- `member_sale_flag` can be used to distinguish a member transaction from a non member transaction. 
+- We use `business_date_key` instead of `transaction_dt_key`
+- There is no `transaction_type_name` EDP.
+- `contact_key` in EDP is the same as `member_key`in ADM but can be used just the same 
+- A non-member will have a contact key of `null`
+- `is_member = 'Y' and contact_key is not null` can be used to distinguish a member transaction from a non member transaction
 
 
-
-### 3.3 Main KPIs
-[<u>Back to Top</u>](#sql-academy)
-
-- ATV – $\text{average transaction value}=\frac{\text{total sales}}{\text{total transactions}}$
-
-- ATF – $\text{average transaction frequency}=\frac{\text{total transactions}}{\text{no. of members}}$
-
-- ACV – $\text{average customer value}=\frac{\text{total sales}}{\text{no. of members}}$
-
-- IPT – $\text{items per transaction}=\frac{\text{no. of items}}{\text{total transactions}}$
-
-- PPU – $\text{price per unit}=\frac{\text{total sales}}{\text{no. of items}}$
-
-- YoY change – $\text{year on year change} = \frac{\text{this year value}}{\text{last year value}} - 1$ &nbsp; &nbsp; &nbsp; &nbsp; *(multiply by 100 for %)*
-
-- MSP – $\text{member sales participation}=\frac{\text{member sales}}{\text{total sales}}\times 100$
-
-- $\text{6 month active rate}=\frac{\text{no. of members shopped in last 6 months}}{\text{no. of members shopped in last 3 years}}$
-
-
-### 3.4 Main Time Periods
-- YTD – Year to Date – e.g. YTD March 2022 = Jan 2022 to March 2022
-- MTD – Month to Date – e.g. first 3 weeks of MTD May 2022 = W18-20 May 2022
-- WTD – Week to Date – a given week period- e.g. WTD Week 11 = Week 11 only
-- MAT – Moving Annual Total - last 12 months of data – e.g. MAT April 2022 = May 2021 to April 2022 
-- LTM – Last 12 Months – same as MAT
-- YoY – Year on Year – This Year vs Last Year
-
-
-### 3.5 Examples
-- Total number of members shopping in Marionnaud Austria in January 2022
+### 2.2.1 Examples
+- Total number of members shopping in January 2022    
     ```
-    select count(distinct contact_key) 
-    from CRM_TARGET.B_TRANSACTION
-    where bu_key = 13
-    and transaction_dt_key between 20220103 and 20220130
-    and member_sale_flag = ‘Y’
-    and contact_key > 0
-    and transaction_type_name = ‘Item’;
-    ```
-- Total Sales in MFR, YTD May 2022
-    ```
-    select sum(item_amt) 
-    from CRM_TARGET.B_TRANSACTION
-    where bu_key = 16
-    and transaction_dt_key between 20220103 and 20220529
-    and transaction_type_name = ‘Item’; 
+    /*
+    Total number of members shopping in January 2022
+    */
+    select 
+        count(distinct contact_key) 
+    from 
+        rdm.f_transaction_detail
+    where 
+        business_date_key between 20220103 and 20220130
+        and is_member = 'Y'
+        and contact_key is not null
+    ;
     ```
 
-### 3.6 B_PRODUCT Table
-- `CRM_TARGET.B_PRODUCT`
-    ![alt text](images/image-13.png)
-- This table shows the information for every product sold
-- We use product hierarchies to determine different categories and sub-categories BUs use (found in EU ADM model Document) 
-- When calculation KPIs, we use always use the following exclusion: 
-`kpi_exclusion_flag = ‘N’`
-- *Used for all BUs – exception for MIT, see ADM data model document* 
-
-
-
-### 3.7 Transactional Base Table
-- Some of the larger BUs can take longer to run, so we have base tables created to use instead of joining the `b_transaction` and the `b_product` table 
-- These are in place for: 
-    - ICI – `ACHAN.ICI_NLBE_WTOR`
-    - KV – `CRM_TARGET.T_ORDITEM_KV`
-    - SD – `CRM_TARGET.T_ORDITEM_SD`
-- These tables already include some of the transactional and product exclusions e.g. `transaction_type_name` 
-- Use instead of the `b_transaction` table for ICINL,ICIBE,KVNL,KVBE,SD
-
-
-### 3.8 Recap and Final Note
-- Basic Code Structure
+- Total Sales in BU, YTD May 2022 in local currency
     ```
     select 
-        column_1
-    ,  sum(column_2)
-    from table_name
-    where condition_1
-    and condition_2
-    group by column_1;
+        sum(item_total_regular_unit_price) 
+    from 
+        rdm.f_transaction_detail
+    where 
+        business_date_key between 20220103 and 20220529
+    ; 
     ```
-- SQL is not case sensitive for syntax but is for record contents.
-- It does not have significant whitespace like Python, so you don’t need to worry about indentation, although try to keep things neat.
-- Typical best practice is to use all-caps, but this doesn’t matter too much.
-- However, if you would like to specify a record, e.g. Estée Lauder, you will need to write it exactly as it is listed in the database, matching the upper and lowercase letters.
-- You can always use something like select distinct brand_name and find your desired record to see how it is formatted.
 
-# 4 Exercises
+# 2.3 rdm.d_product and rdm_d.product_hierarchy Tables
+
+[Back to Top](#table-of-contents)
+
+- `rdm.d_product` shows the information for every product sold
+- `rdm.d_product_hierarchy` shows product hierarchies to determine different categories and sub-categories
+- When calculating KPIs, we use always use the following exclusion: 
+`is_kpi_exclusion = 'N'`
+
+## 2.3.1 Examples
+
+Member Sales by Category YTD May 2022
+
+```
+select 
+    ph.global_hierarchy_description_1,
+    sum(item_total_regular_unit_price) as sales
+from 
+    rdm.f_transaction_detail t
+    join rdm.d_product p on t.product_key = p.product_key
+    join rdm.d_product_hierarchy ph on t.product_key = ph.product_key
+where 
+    business_date_key between 20220103 and 20220529
+    and p.is_kpi_exclusion = 'N'
+    and t.is_member = 'Y'
+    and t.contact_key is not null
+group by
+    ph.global_hierarchy_description_1
+order by sales desc
+; 
+```
+
+# 3 Exercises
 
 [Back to Top](#table-of-contents)
 
 ## 4.1 Warm Up Questions - B_TRANSACTION only
 [Answers](#51-warm-up-questions-answers)
 
-1. Return all transactions that happened in MIT on the 1st of January 2023.
+1. Return all transactions that happened in a BU on the 1st of January 2023.
 
-2. Return all unique members who shopped MFR on the 1st of January 2023.
+2. Return all unique members who shopped in a BU on the 1st of January 2023.
 
-3. What were the total Member Sales on the 30th of May 2023 in MAT?
+3. What were the total Member Sales on the 30th of May 2023 in a BU?
 
-4. How many rows are in the B_TRANSACTION table on the 16th of September 2023 for MHU? Hint: count(*) returns the number of rows.
+4. How many rows are in the B_TRANSACTION table on the 16th of September 2023 for a BU? Hint: count(*) returns the number of rows.
 
-5. How many items were bought in MCZ on the 25th of March 2023?
+5. How many items were bought in a BU on the 25th of March 2023?
 
 
 ## 4.2 Exercises 1 - B_TRANSACTION
@@ -687,8 +464,10 @@ We can also use a column called `age_num` in the contact table which has their c
 
 1.  Code:  
     ```
-    select *
-    from crm_target.b_transaction
+    select 
+        *
+    from 
+        rdm.f_transaction_detail
     where bu_key = 17
     and transaction_dt_key = 20230101;
     ```
