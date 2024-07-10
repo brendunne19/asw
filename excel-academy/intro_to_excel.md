@@ -19,7 +19,7 @@
 [3.0 Exercises](#30-exercises)
 * [3.1 Cereal Dataset](#31-exercise-1-cereal-dataset)
 * [3.2 KPI Dataset](#32-exercise-2-kpi-dataset)
-* [3.3 ]
+* [3.3 Complex Analysis](#33-complex-analysis)
 
 ## 1.0 Shortcuts and Formulas
 
@@ -264,3 +264,11 @@ Create a new blank excel and paste your sql query results into the new tab. We w
 The filters should automatically change each chart at the same time (hint: slicers!). The charts should all be visible at the same time, and it should look pretty too.
 
 > There are multiple ways of doing this, so don't worry too much if you don't do it the same way as the "answers" did, as long as you get the same results!
+
+### 3.3 Complex Analysis
+
+This is a type of analysis that you are likely to see when doing brand analysis, where a brand requests particular information that is quite niche.
+
+Once again, we want you to generate your own datasets, but if you are struggling (as these are definitely more difficult queries) then feel free to look at the example queries as the focus is more on the excel here. In the interest of saving time, there is a base table you can use to create your queries from called `BDUNNE.EXCEL_ACADEMY_BASE_TABLE`.
+
+1. P&G want to analyse how many members are shopping their brands together in the ORAL CARE category, often called **cross-shop**, for KVNL in Fiscal January 2024.
