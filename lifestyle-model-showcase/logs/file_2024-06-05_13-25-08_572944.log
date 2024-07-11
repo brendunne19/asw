@@ -1,0 +1,217 @@
+2024-06-05 13:25:08.572 | INFO     | __main__:predict_model:16 - run_predict_model.py initialised
+2024-06-05 13:25:08.588 | INFO     | __main__:predict_model:17 - bu_key=22 bu_code='MRO' model_label='upsample5_model' model_month_label='MAY23' current_month_model_flag=0 run_type='MONTHLY' current_month_flag=1 specified_month_idnt=202404 specified_month_name='APR' period_length=23
+2024-06-05 13:25:09.678 | INFO     | __main__:predict_model:41 - Starting for fiscal month: 202406
+2024-06-05 13:25:09.678 | INFO     | __main__:predict_model:52 - Create data tables in ADM
+2024-06-05 13:29:41.144 | INFO     | __main__:predict_model:59 - Fetch data tables from ADM
+2024-06-05 13:30:19.964 | INFO     | __main__:predict_model:61 - build training features
+2024-06-05 13:30:24.731 | INFO     | __main__:predict_model:63 - prep data for classification
+2024-06-05 13:30:27.628 | INFO     | __main__:predict_model:65 - predict on data
+2024-06-05 13:30:32.973 | INFO     | __main__:predict_model:67 - completed Segmentation training
+2024-06-05 13:30:32.989 | INFO     | __main__:predict_model:71 - Initiate Visualise Profile
+2024-06-05 13:30:32.989 | INFO     | src.visualisation.visualise_profiles:__init__:18 - -----------------------------------------
+2024-06-05 13:30:32.989 | INFO     | src.visualisation.visualise_profiles:__init__:19 - VISUALISE PROFILE INITIATED
+2024-06-05 13:30:32.989 | INFO     | src.visualisation.visualise_profiles:__init__:20 - -----------------------------------------
+2024-06-05 13:30:32.989 | INFO     | src.visualisation.visualise_profiles:__init__:24 - Collecting profile data
+2024-06-05 13:32:34.230 | INFO     | src.visualisation.visualise_profiles:__init__:42 - Number of unique contact keys: 160586
+Length of prediction table: 160586 (Should be the same as above)
+2024-06-05 13:32:34.246 | INFO     | src.visualisation.visualise_profiles:__init__:43 - Total Counts per Segment:
+   pred  contact_key       pct
+0     1        27298  0.169990
+1     2        21902  0.136388
+2     3        34670  0.215897
+3     4        19837  0.123529
+4     5        46355  0.288662
+5     6        10524  0.065535
+2024-06-05 13:32:34.246 | INFO     | __main__:predict_model:73 - Aggregate profile data
+2024-06-05 13:33:48.884 | INFO     | __main__:predict_model:75 - Combine raw datasets
+2024-06-05 13:34:03.665 | INFO     | __main__:predict_model:77 - Calculate metrics
+2024-06-05 13:34:04.385 | INFO     | __main__:predict_model:79 - BU-level metrics:   bu_code     tot_sales  members         acv         atv       atf      ipt  \
+0     MRO  1.324432e+08   152218  870.088845  351.506776  2.475312  2.47202   
+
+          ppu  pct_discount  16_to_20_yrs_share  21_to_25_yrs_share  \
+0  142.194147      0.343094            0.039726            0.093491   
+
+   26_to_35_yrs_share  36_to_45_yrs_share  46_to_55_yrs_share  \
+0            0.247684            0.284815            0.206165   
+
+   56_to_66_yrs_share  66+_yrs_share  vip_share  loyal_share  regular_share  \
+0            0.084083       0.044036     0.0434      0.06756       0.113277   
+
+   one_offs_share  new_share  lapsed_share  inactive_share  gone_away_share  \
+0        0.267065   0.123151       0.38552             0.0         0.000027   
+
+   female_share  male_share  unspecified_share  accessories_sales_share  \
+0      0.273043    0.067673           0.659285                  0.00021   
+
+   fragrances_women_sales_share  fragrances_men_sales_share  \
+0                      0.482286                    0.315807   
+
+   fragrances_children_sales_share  fragrances_unisex_sales_share  \
+0                         0.001443                       0.003446   
+
+   gift_sets_selective_sales_share  make_up_eyes_sales_share  \
+0                         0.016636                  0.026306   
+
+   make_up_face_sales_share  make_up_lips_sales_share  \
+0                  0.040589                  0.018072   
+
+   make_up_nails_sales_share  make_up_others_sales_share  other_sales_share  \
+0                   0.001737                    0.007373           0.020562   
+
+   parapharmacy_sales_share  skincare_women_sales_share  \
+0                       0.0                    0.060717   
+
+   skincare_men_sales_share  skincare_children_sales_share  \
+0                  0.003199                       0.000491   
+
+   skincare_unisex_sales_share  suncare_selective_sales_share  \
+0                          0.0                       0.001125   
+
+   a_brand_sales_share  excl_brand_sales_share  pl_brand_sales_share  \
+0                  0.0                     0.0               0.02353   
+
+   o+o_sales_share  pure_offline_sales_share  pure_online_sales_share  
+0         0.086127                  0.866065                 0.047807  
+2024-06-05 13:34:05.091 | INFO     | __main__:predict_model:81 - Cluster-level metrics:   bu_code  cluster    tot_sales  members          acv         atv       atf  \
+0     MRO        1  11293275.80    25894   436.134850  379.771860  1.148413   
+1     MRO        2  29844329.94    20882  1429.189251  407.275443  3.509147   
+2     MRO        3  32151109.44    33017   973.774402  438.354481  2.221431   
+3     MRO        4  15404233.40    18851   817.157360  294.119857  2.778314   
+4     MRO        5  28921673.25    43273   668.353783  250.258926  2.670649   
+5     MRO        6  14828561.91    10301  1439.526445  456.460072  3.153674   
+
+        ipt         ppu  pct_discount  16_to_20_yrs_share  21_to_25_yrs_share  \
+0  1.891045  200.826472      0.337445            0.036688            0.093072   
+1  2.351456  173.201381      0.353068            0.022795            0.069390   
+2  2.252778  194.583970      0.339803            0.048642            0.114214   
+3  2.500095  117.643450      0.328926            0.052835            0.095220   
+4  2.784679   89.869936      0.331212            0.037922            0.088415   
+5  2.613249  174.671495      0.372351            0.036695            0.095136   
+
+   26_to_35_yrs_share  36_to_45_yrs_share  46_to_55_yrs_share  \
+0            0.250946            0.278713            0.206689   
+1            0.227660            0.281247            0.238100   
+2            0.285368            0.273617            0.181846   
+3            0.225983            0.282850            0.210652   
+4            0.242599            0.300857            0.204192   
+5            0.220367            0.279487            0.218134   
+
+   56_to_66_yrs_share  66+_yrs_share  vip_share  loyal_share  regular_share  \
+0            0.086468       0.047424   0.001947     0.004422       0.030065   
+1            0.102145       0.058663   0.069797     0.147919       0.205324   
+2            0.066481       0.029833   0.036955     0.065433       0.103258   
+3            0.087475       0.044984   0.051311     0.071639       0.114208   
+4            0.083978       0.042035   0.048443     0.057025       0.114689   
+5            0.092127       0.058053   0.079434     0.104658       0.156986   
+
+   one_offs_share  new_share  lapsed_share  inactive_share  gone_away_share  \
+0        0.304865   0.204447      0.454213             0.0         0.000041   
+1        0.237173   0.072604      0.267086             0.0         0.000097   
+2        0.280737   0.136673      0.376945             0.0         0.000000   
+3        0.237322   0.080219      0.445301             0.0         0.000000   
+4        0.256378   0.122396      0.401045             0.0         0.000024   
+5        0.293838   0.059299      0.305786             0.0         0.000000   
+
+   female_share  male_share  unspecified_share  accessories_sales_share  \
+0      0.264501         0.0           0.735499                 0.000004   
+1      0.328513         0.0           0.671487                 0.000090   
+2      0.239907         0.0           0.760093                 0.000057   
+3      0.354729         0.0           0.645271                 0.000442   
+4      0.306080         0.0           0.693920                 0.000590   
+5      0.000000         1.0           0.000000                 0.000018   
+
+   fragrances_women_sales_share  fragrances_men_sales_share  \
+0                      0.975613                    0.000107   
+1                      0.759346                    0.172921   
+2                      0.224634                    0.724204   
+3                      0.221664                    0.088168   
+4                      0.421381                    0.193714   
+5                      0.480805                    0.410663   
+
+   fragrances_children_sales_share  fragrances_unisex_sales_share  \
+0                         0.000404                       0.000016   
+1                         0.001028                       0.001807   
+2                         0.000844                       0.001963   
+3                         0.001207                       0.003380   
+4                         0.003493                       0.008357   
+5                         0.000895                       0.003755   
+
+   gift_sets_selective_sales_share  make_up_eyes_sales_share  \
+0                         0.004820                  0.003671   
+1                         0.013436                  0.008249   
+2                         0.011757                  0.004912   
+3                         0.010965                  0.147977   
+4                         0.035014                  0.022231   
+5                         0.015155                  0.010518   
+
+   make_up_face_sales_share  make_up_lips_sales_share  \
+0                  0.001843                  0.002574   
+1                  0.011883                  0.006666   
+2                  0.007338                  0.003332   
+3                  0.215178                  0.097329   
+4                  0.042714                  0.016294   
+5                  0.019464                  0.007802   
+
+   make_up_nails_sales_share  make_up_others_sales_share  other_sales_share  \
+0                   0.000480                    0.001249           0.004809   
+1                   0.000749                    0.002914           0.009561   
+2                   0.000456                    0.002090           0.007889   
+3                   0.004111                    0.013934           0.023148   
+4                   0.004158                    0.019911           0.057947   
+5                   0.000672                    0.003112           0.011837   
+
+   parapharmacy_sales_share  skincare_women_sales_share  \
+0                       0.0                    0.003882   
+1                       0.0                    0.009706   
+2                       0.0                    0.008366   
+3                       0.0                    0.164231   
+4                       0.0                    0.162554   
+5                       0.0                    0.030931   
+
+   skincare_men_sales_share  skincare_children_sales_share  \
+0                  0.000297                       0.000121   
+1                  0.001001                       0.000327   
+2                  0.001559                       0.000288   
+3                  0.005189                       0.000476   
+4                  0.007486                       0.001198   
+5                  0.003619                       0.000277   
+
+   skincare_unisex_sales_share  suncare_selective_sales_share  \
+0                          0.0                       0.000112   
+1                          0.0                       0.000316   
+2                          0.0                       0.000312   
+3                          0.0                       0.002600   
+4                          0.0                       0.002958   
+5                          0.0                       0.000477   
+
+   a_brand_sales_share  excl_brand_sales_share  pl_brand_sales_share  \
+0                  0.0                     0.0              0.005564   
+1                  0.0                     0.0              0.009009   
+2                  0.0                     0.0              0.006418   
+3                  0.0                     0.0              0.031073   
+4                  0.0                     0.0              0.066202   
+5                  0.0                     0.0              0.012478   
+
+   o+o_sales_share  pure_offline_sales_share  pure_online_sales_share  
+0         0.039921                  0.845454                 0.114625  
+1         0.085878                  0.885552                 0.028570  
+2         0.066729                  0.896564                 0.036707  
+3         0.126868                  0.822857                 0.050275  
+4         0.088652                  0.874435                 0.036913  
+5         0.116632                  0.804980                 0.078388  
+2024-06-05 13:34:05.091 | INFO     | __main__:predict_model:82 - 
+Calculate column indexes
+2024-06-05 13:34:05.106 | INFO     | src.visualisation.visualise_profiles:calculate_column_indexes:270 - Columns to index: ['acv', 'atv', 'atf', 'ipt', 'ppu', 'pct_discount', '16_to_20_yrs_share', '21_to_25_yrs_share', '26_to_35_yrs_share', '36_to_45_yrs_share', '46_to_55_yrs_share', '56_to_66_yrs_share', '66+_yrs_share', 'vip_share', 'loyal_share', 'regular_share', 'one_offs_share', 'new_share', 'lapsed_share', 'female_share', 'male_share', 'unspecified_share', 'accessories_sales_share', 'fragrances_women_sales_share', 'fragrances_men_sales_share', 'fragrances_children_sales_share', 'fragrances_unisex_sales_share', 'gift_sets_selective_sales_share', 'make_up_eyes_sales_share', 'make_up_face_sales_share', 'make_up_lips_sales_share', 'make_up_nails_sales_share', 'make_up_others_sales_share', 'other_sales_share', 'skincare_women_sales_share', 'skincare_men_sales_share', 'skincare_children_sales_share', 'suncare_selective_sales_share', 'pl_brand_sales_share', 'o+o_sales_share', 'pure_offline_sales_share', 'pure_online_sales_share']
+2024-06-05 13:34:05.106 | INFO     | __main__:predict_model:84 - Pivot cluster absolutes
+2024-06-05 13:34:22.311 | INFO     | __main__:predict_model:86 - pivot and format abs and pivot cluster absolutes
+2024-06-05 13:34:38.933 | INFO     | __main__:predict_model:88 - Save heatmap
+2024-06-05 13:34:43.248 | INFO     | __main__:predict_model:94 - create output table
+2024-06-05 13:34:43.603 | INFO     | src.output.output_results:create_output_table:31 - Passing following error: 
+
+2024-06-05 13:34:44.103 | INFO     | __main__:predict_model:96 - export output results
+2024-06-05 13:34:45.892 | INFO     | __main__:predict_model:98 - create siebel table
+2024-06-05 13:34:46.236 | INFO     | src.output.output_results:create_siebel_table:113 - Passing following error: 
+
+2024-06-05 13:34:46.684 | INFO     | __main__:predict_model:100 - fill siebel table
+2024-06-05 13:35:03.425 | INFO     | src.output.output_results:fill_siebel_table:226 - INFO: Lost 0.83% of original members due to duplicates in contact_key/member_num.
+2024-06-05 13:35:03.457 | INFO     | __main__:predict_model:104 - Job completed

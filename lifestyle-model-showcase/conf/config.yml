@@ -1,0 +1,12 @@
+# prediction parameters
+
+bu_key : 22
+bu_code : 'MRO'
+model_label : 'upsample5_model'
+model_month_label : 'MAY23'
+current_month_model_flag : 0
+run_type : 'MONTHLY'
+current_month_flag : 1
+specified_month_idnt : 202404
+specified_month_name : 'APR'
+period_length : 23
