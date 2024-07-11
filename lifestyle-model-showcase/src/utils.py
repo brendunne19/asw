@@ -6,36 +6,6 @@ import pandas as pd
 from dateutil.relativedelta import FR, relativedelta
 
 
-def get_bu_instance(bu_code: str) -> str:
-
-    """Return the instance that a given BU is on based on the BU code."""
-
-    bu_instance_dict = {
-        "KVNL": "CRMBKVP",
-        "MFR": "CRMBMAP",
-        "TPS": "CRMBSDP",
-        "DRLV": "CRMBKVP",
-        "MIT": "CRMBMAP",
-        "SD": "CRMBSDP",
-        "DRLT": "CRMBKVP",
-        "MCH": "CRMBMAP",
-        "WTCTR": "CRMBSDP",
-        "ICINL": "CRMBKVP",
-        "MAT": "CRMBMAP",
-        "ICIBE": "CRMBKVP",
-        "MES": "CRMBMAP",
-        "MPT": "CRMBMAP",
-        "MHU": "CRMBMAP",
-        "MCZ": "CRMBMAP",
-        "MSK": "CRMBMAP",
-        "WTCUA": "CRMBMAP",
-        "SRU": "CRMBMAP",
-        "KVBE": "CRMBKVP",
-    }
-
-    return bu_instance_dict[bu_code]
-
-
 def get_mth_name(fiscal_mth_idnt: str) -> str:
 
     """Get the first 3 letters of the current fiscal month."""
@@ -54,7 +24,6 @@ def get_mth_name(fiscal_mth_idnt: str) -> str:
             raise e
     
     return month_name.iloc[0,0]
-
 
 
 def drop_adm_table_if_exists(cur: cx_Oracle.Cursor, table: str) -> None:
@@ -78,7 +47,7 @@ def drop_adm_table_if_exists(cur: cx_Oracle.Cursor, table: str) -> None:
 
 def execute_sql_allow_drops_to_fail(cur: cx_Oracle.Cursor, sql_command: str) -> None:
 
-    """ Execute a SQL command and continue if a drop fails."""
+    """Execute a SQL command and continue if a drop fails."""
 
     try:
         cur.execute(sql_command)
